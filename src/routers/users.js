@@ -5,8 +5,7 @@ const User = require('../models/user')
 // POST route to add a user to users collection. Will be a protected admin route later once auth is implemented
 router.post('/users', async (req, res) => {
     try {
-        const user = new User(req.body);
-        await user.save()
+        const user = await new User(req.body).save()
         res.status(200).send(user)
     } catch(e) {
         res.status(400).send(e)
